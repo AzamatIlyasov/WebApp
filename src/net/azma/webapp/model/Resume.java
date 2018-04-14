@@ -3,7 +3,7 @@ package net.azma.webapp.model;
 import java.util.*;
 
 public class Resume implements Comparable<Resume>{
-    private String uuid;
+    private final String uuid;
     private String fullName;
     private String location;
     private String homePage;
@@ -52,10 +52,6 @@ public class Resume implements Comparable<Resume>{
         return sections;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
-
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
@@ -73,23 +69,29 @@ public class Resume implements Comparable<Resume>{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Resume resume = (Resume) o;
-        return Objects.equals(uuid, resume.uuid) &&
-                Objects.equals(fullName, resume.fullName) &&
-                Objects.equals(location, resume.location) &&
-                Objects.equals(homePage, resume.homePage) &&
-                Objects.equals(contacts, resume.contacts) &&
-                Objects.equals(sections, resume.sections);
+        return uuid.equals(resume.uuid);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(uuid, fullName, location, homePage, contacts, sections);
+        return uuid.hashCode();
     }
 
     @Override
     public int compareTo(Resume o) {
         return fullName.compareTo(o.fullName);
+    }
+
+    @Override
+    public String toString() {
+        return "Resume{" +
+                "uuid='" + uuid + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", location='" + location + '\'' +
+                ", homePage='" + homePage + '\'' +
+                ", contacts=" + contacts +
+                ", sections=" + sections +
+                '}';
     }
 }
 

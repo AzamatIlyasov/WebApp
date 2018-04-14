@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MapStorage extends AbstractStorage {
-    private Map mapResume = new HashMap();
+    private Map<String, Resume> mapResume = new HashMap<String, Resume>();
 
     @Override
     protected void doClear() {
@@ -16,31 +16,31 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     protected void doSave(Resume r) {
-
+        mapResume.put("uuid",r);
     }
 
     @Override
     protected void doUpdate(Resume r) {
-
+        mapResume.replace(r.getUuid(), r);
     }
 
     @Override
     protected Resume doLoad(String uuid) {
-        return null;
+        return mapResume.get(uuid);
     }
 
     @Override
     protected void doDelete(String uuid) {
-
+        mapResume.remove(uuid);
     }
 
     @Override
     public Collection<Resume> getAllSorted() {
-        return null;
+        return mapResume.values();
     }
 
     @Override
     public int size() {
-        return 0;
+        return mapResume.size();
     }
 }

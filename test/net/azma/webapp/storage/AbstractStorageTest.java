@@ -9,11 +9,13 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
-public class ArrayStorageTest extends AbstractStorageTest {
-    private Resume R1, R2, R3;
-    private ArrayStorage storage = new ArrayStorage();
+public class AbstractStorageTest {
+
+    public Resume R1, R2, R3;
+    public AbstractStorage storage;
 
     @Before
     public void setUp() throws Exception {
@@ -79,5 +81,4 @@ public class ArrayStorageTest extends AbstractStorageTest {
         storage.save(R2);
         assertEquals(1, storage.size());
     }
-
 }
